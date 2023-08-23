@@ -24,7 +24,7 @@ jobs:
     strategy:
       matrix: ${{ fromJSON(needs.setup.outputs.matrix) }}
     steps:
-      - run: echo ${{ matrix }}
+      - run: echo "${{ toJSON(matrix) }}"
 #      -
 #        name: Checkout
 #        uses: actions/checkout@v3

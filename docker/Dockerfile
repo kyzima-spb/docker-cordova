@@ -72,7 +72,11 @@ WORKDIR /app
 COPY --from=gradle-installer /opt/gradle /opt/gradle
 
 ARG CORDOVA_VERSION
-RUN set -ex && npm i -g cordova@${CORDOVA_VERSION}
+
+RUN set -ex  \
+    && npm i -g \
+        cordova@${CORDOVA_VERSION} \
+        serve
 
 COPY --from=java-installer /opt/jdk /opt/jdk
 COPY --from=tools-installer /opt/sdk/cmdline-tools /opt/android-sdk/cmdline-tools
@@ -97,5 +101,7 @@ RUN set -ex \
         "build-tools;${ANDROID_BUILD_TOOLS_VERSION}"
 
 COPY ./root /
+
+USER node
 
 ENTRYPOINT ["docker-entrypoint.sh"]
