@@ -1,0 +1,84 @@
+name: Build and publish images
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  IMAGE_NAME: "cordova"
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.load.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v3
+      - id: load
+        working-directory: ./.github
+        run: echo "matrix=$(cat matrix.json)" | tr -d '\n' >> $GITHUB_OUTPUT
+  build:
+    needs: setup
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJSON(needs.setup.outputs.matrix) }}
+    steps:
+      - run: echo ${{ matrix }}
+#      -
+#        name: Checkout
+#        uses: actions/checkout@v3
+#      -
+#        name: Docker meta
+#        id: meta
+#        uses: docker/metadata-action@v4
+#        with:
+#          images: |
+#            ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}
+#          tags: |
+#            ${{ matrix.pyversion }}-${{ matrix.release }}
+#          flavor: |
+#            latest=${{ matrix.release == 'slim-bullseye' && matrix.pyversion == '3.11' }}
+#      -
+#        name: Set up QEMU
+#        uses: docker/setup-qemu-action@v2
+#        with:
+#          platforms: linux/amd64,linux/arm/v7,linux/arm64
+#      -
+#        name: Set up Docker Buildx
+#        uses: docker/setup-buildx-action@v2
+#      -
+#        name: Login to Docker Hub
+#        uses: docker/login-action@v2
+#        with:
+#          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+#          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+#      -
+#        name: Build and push
+#        uses: docker/build-push-action@v3
+#        env:
+#          SUFFIX: ${{ startsWith(matrix.release, 'alpine') && '-alpine' || '' }}
+#        with:
+#          context: ./docker
+#          file: ./docker/Dockerfile${{ env.SUFFIX }}
+#          build-args: |
+#            PYVERSION=${{ matrix.pyversion }}
+#            RELEASE=${{ matrix.release }}
+#          platforms: linux/amd64,linux/arm/v7,linux/arm64
+#          push: true
+#          tags: ${{ steps.meta.outputs.tags }}
+#          labels: ${{ steps.meta.outputs.labels }}
+#          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/buildcache:${{ env.IMAGE_NAME }}-${{ matrix.pyversion }}-${{ matrix.release }}
+#          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/buildcache:${{ env.IMAGE_NAME }}-${{ matrix.pyversion }}-${{ matrix.release }},mode=max
+#  remove-old-versions:
+#    needs: build
+#    runs-on: ubuntu-latest
+#    steps:
+#      -
+#        name: Delete old versions of images
+#        uses: vlaurin/action-ghcr-prune@main
+#        with:
+#          token: ${{ secrets.PAT }}
+#          user: ${{ github.repository_owner }}
+#          container: ${{ env.IMAGE_NAME }}
+#          untagged: true

@@ -1,0 +1,26 @@
+{
+  "12": {
+    "jdk": "openjdk@1.17-0",
+    "cmdlineTools": "11.0",
+    "platform": "33",
+    "buildTools": "33.0.2"
+  },
+  "11": {
+    "jdk": "openjdk@1.17-0",
+    "cmdlineTools": "11.0",
+    "platform": "32",
+    "buildTools": "32.0.0"
+  },
+  "10": {
+    "jdk": "openjdk@1.11-0",
+    "cmdlineTools": "10.0",
+    "platform": "30",
+    "buildTools": "30.0.3"
+  },
+  "9": {
+    "jdk": "zulu@1.8",
+    "cmdlineTools": "8.0",
+    "platform": "29",
+    "buildTools": "29.0.2"
+  }
+}
