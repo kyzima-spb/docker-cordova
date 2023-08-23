@@ -1,36 +1,51 @@
 {
-  "target": ["12", "11", "10", "9"],
+  "version": ["12", "11", "10", "9"],
+  "node": ["18", "16"],
+  "os": ["bookworm-slim", "bullseye-slim"],
   "include": [
     {
-      "latest": false
+      "latest": false,
+      "prefix": "android",
+      "latestOS": false,
+      "latestNode": false
+    },
+    {
+      "os": "bookworm-slim",
+      "latestOS": true
+    },
+    {
+      "node": "18",
+      "latestNode": true
     },
     {
       "latest": true,
-      "target": "12"
+      "version": "12",
+      "node": "18",
+      "os": "bookworm-slim"
     },
     {
-      "target": "12",
+      "version": "12",
       "jdk": "openjdk@1.17-0",
       "cmdlineTools": "11.0",
       "platform": "33",
       "buildTools": "33.0.2"
     },
     {
-      "target": "11",
+      "version": "11",
       "jdk": "openjdk@1.17-0",
       "cmdlineTools": "11.0",
       "platform": "32",
       "buildTools": "32.0.0"
     },
     {
-      "target": "10",
+      "version": "10",
       "jdk": "openjdk@1.11-0",
       "cmdlineTools": "10.0",
       "platform": "30",
       "buildTools": "30.0.3"
     },
     {
-      "target": "9",
+      "version": "9",
       "jdk": "zulu@1.8",
       "cmdlineTools": "8.0",
       "platform": "29",
