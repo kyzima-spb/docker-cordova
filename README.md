@@ -48,19 +48,13 @@
 
 ## Compatibility of Cordova and Android SDK versions
 
-| cordova-android | JDK            | Gradle | cmdline-tools | build-tools | platforms  |
-|-----------------|----------------|--------|---------------|-------------|------------|
-| 12.0.0          | openjdk@1.17-0 | 7.6    | 11.0          | 33.0.2      | android-33 |
-|                 | openjdk@1.11-0 |        | 10.0          |             |            |
-|                 |                |        |               |             |            |
-| 11.x.x          | openjdk@1.17-0 | 7.4.2  | 11.0          | 32.0.0      | android-32 |
-|                 | openjdk@1.11-0 |        | 10.0          |             |            |
-|                 |                |        |               |             |            |
-| 10.x.x          | openjdk@1.11-0 | 7.1.1  | 10.0          | 30.0.3      | android-30 |
-|                 | zulu@1.8       |        | 8.0           |             |            |
-|                 |                |        |               |             |            |
-| 9.x.x           | zulu@1.8       | 6.5    | 8.0           | 29.0.2      | android-29 |
-| 8.x.x           | zulu@1.8       | 4.10.3 | 8.0           | 28.0.3      | android-28 |
+| cordova-android | JDK                               | Gradle | cmdline-tools | build-tools | platforms  |
+|-----------------|-----------------------------------|--------|---------------|-------------|------------|
+| 12.0.0          | openjdk@1.17-0<br/>openjdk@1.11-0 | 7.6    | 11.0<br/>10.0 | 33.0.2      | android-33 |
+| 11.x.x          | openjdk@1.17-0<br/>openjdk@1.11-0 | 7.4.2  | 11.0<br/>10.0 | 32.0.0      | android-32 |
+| 10.x.x          | openjdk@1.11-0<br/>zulu@1.8       | 7.1.1  | 10.0<br/>8.0  | 30.0.3      | android-30 |
+| 9.x.x           | zulu@1.8                          | 6.5    | 8.0           | 29.0.2      | android-29 |
+| 8.x.x           | zulu@1.8                          | 4.10.3 | 8.0           | 28.0.3      | android-28 |
 
 
 ## Compatibility of Android cmdline-tools and Java versions
