@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 
 if ! getent passwd "$(id -u)" > /dev/null 2>&1; then
@@ -7,7 +7,7 @@ fi
 
 CORDOVA_TELEMETRY_OFF=${CORDOVA_TELEMETRY_OFF:-'0'}
 export CORDOVA_TELEMETRY_OFF
-[[ $CORDOVA_TELEMETRY_OFF != '0' ]] && cordova telemetry off > /dev/null
+[ $CORDOVA_TELEMETRY_OFF != '0' ] && cordova telemetry off > /dev/null
 
 
 exec "$@"
